@@ -1,0 +1,23 @@
+.message-input-wrapper {
+    padding: 0.5rem;
+}
+
+.message-input {
+    width: 100%;
+}
+
+::ng-deep .message-input .mat-form-field-wrapper {
+    margin-bottom: -1.25em;
+}
+
+button {
+    margin-left: 0.5rem;
+}
+
+.mat-icon-button {
+    color: #673ab7;
+}
+
+.mat-icon-button[disabled] {
+    color: rgba(0, 0, 0, 0.26);
+}

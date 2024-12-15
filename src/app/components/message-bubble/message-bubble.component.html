@@ -1,0 +1,11 @@
+<div class="message-bubble" [ngClass]="{'own-message': isOwnMessage}">
+    <div class="message-content mat-elevation-z1">
+        <div class="message-header">
+            <span class="username">{{ message.senderUsername }}</span>
+            <span class="timestamp">{{ formatTimestamp(message.timestamp) }}</span>
+        </div>
+        <div class="message-text">
+            {{ message.content }}
+        </div>
+    </div>
+</div>

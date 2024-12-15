@@ -1,0 +1,85 @@
+{
+  "users": [
+    {
+      "id": "60e4",
+      "username": "amir",
+      "email": "amir@example.com",
+      "password": "amir123",
+      "isOnline": false
+    },
+    {
+      "id": "1fcc",
+      "username": "amin",
+      "email": "amin@example.com",
+      "password": "amin123",
+      "isOnline": true
+    },
+    {
+      "id": "b5d9",
+      "username": "Mohamed",
+      "email": "Mohamed@example.com",
+      "password": "med123"
+    },
+    {
+      "id": "6a02",
+      "username": "Ala",
+      "email": "Ala@example.com",
+      "password": "ala123"
+    },
+    {
+      "id": "134f",
+      "username": "tyson",
+      "email": "tyson@example.com",
+      "password": "tyson123"
+    },
+    {
+      "id": "732f",
+      "username": "kly",
+      "email": "kly@example.com",
+      "password": "kly123",
+      "isOnline": false
+    },
+    {
+      "id": "5675",
+      "username": "tim",
+      "email": "tim@example.com",
+      "password": "tim123",
+      "isOnline": false
+    },
+    {
+      "id": "43d5",
+      "username": "steve",
+      "email": "steve@example.com",
+      "password": "steve123",
+      "isOnline": false
+    },
+    {
+      "id": "bdc0",
+      "username": "guest",
+      "email": "guest@example.com",
+      "password": "guest123",
+      "isOnline": false
+    },
+    {
+      "id": "dde4",
+      "username": "jobs",
+      "email": "jobs@example.com",
+      "password": "jobs123"
+    },
+    {
+      "id": "89d5",
+      "username": "guest2",
+      "email": "guest2@example.com",
+      "password": "guest123",
+      "isOnline": false
+    },
+    {
+      "id": "b1e8",
+      "username": "guest3",
+      "email": "guest3@example.com",
+      "password": "guest3",
+      "isOnline": true
+    }
+  ],
+  "messages": []
+}

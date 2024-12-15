@@ -1,0 +1,13 @@
+<div class="user-list-container">
+    <mat-list>
+        <h3 mat-subheader>Users</h3>
+        <mat-list-item 
+            *ngFor="let user of users$ | async" 
+            class="user-item"
+            [class.selected]="user.id === selectedUserId"
+            (click)="user.id && onUserClick(user.id)">
+            <mat-icon matListItemIcon class="online-icon" aria-label="User is online" [ngStyle]="{color: user.isOnline == true ? 'green' : 'gray'}">fiber_manual_record</mat-icon>
+            <div matListItemTitle>{{ user.username }}<span *ngIf="user.id === currentUser?.id" [ngStyle]="{'font-weight': 'bold'}"> (You)</span></div>
+        </mat-list-item>
+    </mat-list>
+</div>
