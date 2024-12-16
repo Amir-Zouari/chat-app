@@ -33,16 +33,17 @@ export class ChatService {
       switchMap(() => this.getMessages())
     ).subscribe(messages => {
       // Merge new messages with existing ones, avoiding duplicates
-      const existingMessages = this.messagesSubject.value;
+      /* const existingMessages = this.messagesSubject.value;
       const allMessages = [...existingMessages];
       
       messages.forEach(newMsg => {
         if (!existingMessages.some(existingMsg => existingMsg.id === newMsg.id)) {
           allMessages.push(newMsg);
         }
-      });
+      }); */
       
-      this.messagesSubject.next(allMessages);
+      //this.messagesSubject.next(allMessages);
+      this.messagesSubject.next(messages);
     });
   }
 

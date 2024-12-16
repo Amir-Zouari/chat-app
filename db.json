@@ -5,7 +5,7 @@
       "username": "amir",
       "email": "amir@example.com",
       "password": "amir123",
-      "isOnline": false
+      "isOnline": true
     },
     {
       "id": "1fcc",
@@ -78,8 +78,33 @@
       "username": "guest3",
       "email": "guest3@example.com",
       "password": "guest3",
-      "isOnline": true
+      "isOnline": false
     }
   ],
-  "messages": []
+  "messages": [
+    {
+      "id": "9eec",
+      "content": "hello",
+      "senderId": "60e4",
+      "recipientId": "1fcc",
+      "senderUsername": "amir",
+      "timestamp": 1734364274462
+    },
+    {
+      "id": "7aa6",
+      "content": "hey how are you",
+      "senderId": "1fcc",
+      "recipientId": "60e4",
+      "senderUsername": "amin",
+      "timestamp": 1734364296392
+    },
+    {
+      "id": "97cc",
+      "content": "im good thanks",
+      "senderId": "60e4",
+      "recipientId": "1fcc",
+      "senderUsername": "amir",
+      "timestamp": 1734364308430
+    }
+  ]
 }
