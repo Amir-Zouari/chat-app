@@ -1,0 +1,42 @@
+<!-- <app-header></app-header> -->
+<!-- <div class="chat-container bg-purple-400"> -->
+
+  <!-- <app-header></app-header> -->
+<div class="chat-containe flex h-svh">
+  <mat-drawer-container class="chat-drawer-container ">
+    <!-- User list sidebar -->
+    <mat-drawer mode="side" opened class="user-list-drawe w-[300px]">
+      <app-user-list 
+        [selectedUserId]="selectedRecipientId"
+        (userSelected)="onUserSelected($event)">
+      </app-user-list>
+    </mat-drawer>
+
+    <!-- Main chat content -->
+    <mat-drawer-content class="chat-content">
+      <div class="flex-1 bg-purple-300 flex flex-col  gap-4 p-8 min-w-[800px] overflow-y-auto">
+        <!-- <div *ngIf="selectedRecipientId" class="private-chat-indicator">
+          Private chat mode
+          <button mat-button (click)="selectRecipient(null)">Exit</button>
+        </div> -->
+        <app-recipient-status />
+        <app-message-bubble
+          *ngFor="let message of messages$ | async"
+          [message]="message"
+          [isOwnMessage]="isOwnMessage(message.senderId)"
+          [isPrivate]="isPrivateMessage(message)">
+        </app-message-bubble>
+       
+      </div>
+
+      <!-- Message input -->
+      <div class="message-input-containe">
+        <app-message-input
+          (sendMessage)="onSendMessage($event)">
+        </app-message-input>
+      </div>
+    </mat-drawer-content>
+  </mat-drawer-container>
+</div>
+
+ 
