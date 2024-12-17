@@ -3,14 +3,15 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { UserService } from './user.service';
+import { User } from '../model/User';
 
-export interface User {
-  id?: number;
-  username: string;
-  email: string;
-  password?: string;
-  isOnline?: boolean;
-}
+// export interface User {
+//   id?: number;
+//   username: string;
+//   email: string;
+//   password?: string;
+//   isOnline?: boolean;
+// }
 
 @Injectable({
   providedIn: 'root'
@@ -68,13 +69,17 @@ export class AuthService {
   }
 
   register(email: string, password: string, username: string): Promise<void> {
-    const newUser: User = {
-      username,
-      email,
-      password,
-      isOnline: true
-    };
-
+    // const newUser: User = {
+    //   username,
+    //   email,
+    //   password,
+    //   isOnline: true
+    // };
+    const newUser = new User();
+    newUser.isOnline = true;
+    newUser.username = username;
+    newUser.password = password;
+    newUser.email = email;
     return new Promise((resolve, reject) => {
       // First check if username already exists
       this.http.get<User[]>(`${this.apiUrl}/users?username=${username}`).subscribe({

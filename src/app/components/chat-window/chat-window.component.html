@@ -1,42 +1,30 @@
-<!-- <app-header></app-header> -->
-<!-- <div class="chat-container bg-purple-400"> -->
+<app-header class="absolute top-0 w-screen h-[64px] py-3"/>
+<div class="min-h-screen bg-purple-500 flex flex-row gap-8 pt-8 px-16">
 
-  <!-- <app-header></app-header> -->
-<div class="chat-containe flex h-svh">
-  <mat-drawer-container class="chat-drawer-container ">
-    <!-- User list sidebar -->
-    <mat-drawer mode="side" opened class="user-list-drawe w-[300px]">
-      <app-user-list 
-        [selectedUserId]="selectedRecipientId"
-        (userSelected)="onUserSelected($event)">
-      </app-user-list>
-    </mat-drawer>
+  <div class="top-[64px]  flex-1   sticky h-svh overflow-y-auto  side-bar">
+    <!-- <h1 class="ml-2 my-3 text-white-100 text-3xl font-bold">Chat</h1> -->
+    <app-user-list
+      [selectedUserId]="selectedRecipientId"
+      (userSelected)="onUserSelectedx($event)"
+    />
+  </div>
+  
+  <div class="flex-auto  bg-purple-500 rounded-xl flex flex-col  gap-1 px-8  min-w-[800px] top-[64px] sticky h-svh chat-window">
+    
+    <app-recipient-status  class="mb-2"/>
+    <div class="flex flex-col px-2 gap-2 overflow-auto h-full">
+      <app-message-bubble
 
-    <!-- Main chat content -->
-    <mat-drawer-content class="chat-content">
-      <div class="flex-1 bg-purple-300 flex flex-col  gap-4 p-8 min-w-[800px] overflow-y-auto">
-        <!-- <div *ngIf="selectedRecipientId" class="private-chat-indicator">
-          Private chat mode
-          <button mat-button (click)="selectRecipient(null)">Exit</button>
-        </div> -->
-        <app-recipient-status />
-        <app-message-bubble
           *ngFor="let message of messages$ | async"
+          [ngClass]="{'self-start':!isOwnMessage(message.senderId),'self-end':isOwnMessage(message.senderId)}"
           [message]="message"
           [isOwnMessage]="isOwnMessage(message.senderId)"
           [isPrivate]="isPrivateMessage(message)">
         </app-message-bubble>
-       
-      </div>
-
-      <!-- Message input -->
-      <div class="message-input-containe">
-        <app-message-input
-          (sendMessage)="onSendMessage($event)">
-        </app-message-input>
-      </div>
-    </mat-drawer-content>
-  </mat-drawer-container>
+    </div>
+    
+    <app-message-input (sendMessage)="onSendMessage($event)" class="sticky bottom-[64px]" class="mt-2"/>
+    <!-- <app-recipient-status [isOnline]="true" class="mb-4"/>
+    <app-contact-item [isOnline]="true"/> -->
+  </div>
 </div>
-
- 

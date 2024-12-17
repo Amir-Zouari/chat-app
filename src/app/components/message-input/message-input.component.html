@@ -13,7 +13,7 @@
     </mat-form-field>
 </div> -->
 
-<div class="flex bg-purple-200 p-3 min-w-[400px]">
+<div class="flex rounded-xl bg-purple-300 p-3 w-full">
  
     <input 
         [(ngModel)]="messageText"
@@ -26,3 +26,4 @@
         [disabled]="!messageText.trim()"
         class="flex-none bg-transparent outline-none border-[#a9a9a9] border-2 rounded-xl px-3 py-2 text-[#a9a9a9] inline-flex gap-1 items-center" >Send  <mat-icon class="text-xl mb-[1px]" fontIcon="send"></mat-icon></button>
 </div>
+

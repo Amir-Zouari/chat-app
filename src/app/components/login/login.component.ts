@@ -23,7 +23,8 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-
+  isSubmitted: boolean = false;
+  isCredentialsAreInvalid: boolean = false;
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -38,12 +39,15 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   async onSubmit() {
+    this.isSubmitted = true;
     if (this.loginForm.valid) {
+      this.isSubmitted = false;
       try {
         const { username, password } = this.loginForm.value;
         await this.authService.login(username, password);
         this.router.navigate(['/chat']);
       } catch (error) {
+        this.isCredentialsAreInvalid = true;
         console.error('Login failed:', error);
       }
     }

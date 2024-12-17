@@ -1,214 +1,83 @@
 {
   "users": [
     {
-      "id": "60e4",
-      "username": "amir",
-      "email": "amir@example.com",
-      "password": "amir123",
-      "isOnline": true
-    },
-    {
-      "id": "1fcc",
-      "username": "amin",
-      "email": "amin@example.com",
+      "id": "79a4",
+      "username": "Amin",
+      "email": "Amin@example.com",
       "password": "amin123",
-      "isOnline": true
+      "isOnline": true,
+      "lastMessage": {
+        "id": "62f8",
+        "content": "fzefzef",
+        "senderId": "5421",
+        "recipientId": "79a4",
+        "senderUsername": "Salah",
+        "timestamp": 1734471896420
+      }
     },
     {
-      "id": "b5d9",
-      "username": "Mohamed",
-      "email": "Mohamed@example.com",
-      "password": "med123"
+      "id": "0597",
+      "username": "Amir",
+      "email": "Amir@example.com",
+      "password": "amir123",
+      "isOnline": false,
+      "lastMessage": {
+        "id": "aebd",
+        "content": "rzgfzgz",
+        "senderId": "79a4",
+        "recipientId": "0597",
+        "senderUsername": "Amin",
+        "timestamp": 1734468070607
+      }
     },
     {
-      "id": "6a02",
-      "username": "Ala",
-      "email": "Ala@example.com",
-      "password": "ala123"
-    },
-    {
-      "id": "134f",
-      "username": "tyson",
-      "email": "tyson@example.com",
-      "password": "tyson123"
-    },
-    {
-      "id": "732f",
-      "username": "kly",
-      "email": "kly@example.com",
-      "password": "kly123",
-      "isOnline": false
-    },
-    {
-      "id": "5675",
-      "username": "tim",
-      "email": "tim@example.com",
-      "password": "tim123",
-      "isOnline": false
-    },
-    {
-      "id": "43d5",
-      "username": "steve",
-      "email": "steve@example.com",
-      "password": "steve123",
-      "isOnline": false
-    },
-    {
-      "id": "bdc0",
-      "username": "guest",
-      "email": "guest@example.com",
-      "password": "guest123",
-      "isOnline": false
-    },
-    {
-      "id": "dde4",
-      "username": "jobs",
-      "email": "jobs@example.com",
-      "password": "jobs123"
-    },
-    {
-      "id": "89d5",
-      "username": "guest2",
-      "email": "guest2@example.com",
-      "password": "guest123",
-      "isOnline": false
-    },
-    {
-      "id": "b1e8",
-      "username": "guest3",
-      "email": "guest3@example.com",
-      "password": "guest3",
-      "isOnline": true
+      "id": "5421",
+      "username": "Salah",
+      "email": "Salah@example.com",
+      "password": "salah123",
+      "isOnline": true,
+      "lastMessage": {
+        "id": "62f8",
+        "content": "fzefzef",
+        "senderId": "5421",
+        "recipientId": "79a4",
+        "senderUsername": "Salah",
+        "timestamp": 1734471896420
+      }
     }
   ],
   "messages": [
     {
-      "id": "1fca",
-      "content": "amin",
-      "senderId": "1fcc",
-      "recipientId": "60e4",
-      "senderUsername": "amin",
-      "timestamp": 1734303073524
+      "id": "f8e5",
+      "content": "abc",
+      "senderId": "0597",
+      "recipientId": "79a4",
+      "senderUsername": "Amir",
+      "timestamp": 1734468050141
     },
     {
-      "id": "0613",
-      "content": "bachir",
-      "senderId": "1fcc",
-      "recipientId": "60e4",
-      "senderUsername": "amin",
-      "timestamp": 1734303076930
+      "id": "8b1e",
+      "content": "aaaaaa",
+      "senderId": "0597",
+      "recipientId": "79a4",
+      "senderUsername": "Amir",
+      "timestamp": 1734468062989
     },
     {
-      "id": "13c0",
-      "content": "dzedz",
-      "senderId": "60e4",
-      "recipientId": "1fcc",
-      "senderUsername": "amir",
-      "timestamp": 1734303086958
+      "id": "aebd",
+      "content": "rzgfzgz",
+      "senderId": "79a4",
+      "recipientId": "0597",
+      "senderUsername": "Amin",
+      "timestamp": 1734468070607
     },
     {
-      "id": "7884",
-      "content": "dezdz",
-      "senderId": "60e4",
-      "recipientId": "1fcc",
-      "senderUsername": "amir",
-      "timestamp": 1734303087923
-    },
-    {
-      "id": "a214",
-      "content": "ainainvae",
-      "senderId": "60e4",
-      "recipientId": "1fcc",
-      "senderUsername": "amir",
-      "timestamp": 1734303089858
-    },
-    {
-      "id": "ac8f",
-      "content": "aefaiefaf",
-      "senderId": "60e4",
-      "recipientId": "1fcc",
-      "senderUsername": "amir",
-      "timestamp": 1734303091331
-    },
-    {
-      "id": "76f4",
-      "content": "ezpfjzpifjz",
-      "senderId": "60e4",
-      "recipientId": "1fcc",
-      "senderUsername": "amir",
-      "timestamp": 1734303092847
-    },
-    {
-      "id": "344f",
-      "content": "adada",
-      "senderId": "60e4",
-      "recipientId": "1fcc",
-      "senderUsername": "amir",
-      "timestamp": 1734303095886
-    },
-    {
-      "id": "554c",
-      "content": "dada",
-      "senderId": "60e4",
-      "recipientId": "1fcc",
-      "senderUsername": "amir",
-      "timestamp": 1734303096769
-    },
-    {
-      "id": "3881",
-      "content": "dazda",
-      "senderId": "60e4",
-      "recipientId": "1fcc",
-      "senderUsername": "amir",
-      "timestamp": 1734303098029
-    },
-    {
-      "id": "8d82",
-      "content": "vsds",
-      "senderId": "1fcc",
-      "recipientId": "60e4",
-      "senderUsername": "amin",
-      "timestamp": 1734305769521
-    },
-    {
-      "id": "3c95",
-      "content": "vsdvs",
-      "senderId": "1fcc",
-      "recipientId": "60e4",
-      "senderUsername": "amin",
-      "timestamp": 1734305772098
-    },
-    {
-      "id": "5171",
-      "content": "bgf",
-      "senderId": "1fcc",
-      "recipientId": "60e4",
-      "senderUsername": "amin",
-      "timestamp": 1734307496122
-    },
-    {
-      "id": "5784",
-      "content": "svdsv",
-      "senderId": "1fcc",
-      "recipientId": "60e4",
-      "senderUsername": "amin",
-      "timestamp": 1734308238632
-    },
-    {
-      "id": "ad7b",
-      "content": "xyz",
-      "senderId": "1fcc",
-      "recipientId": "6a02",
-      "senderUsername": "amin",
-      "timestamp": 1734308334664
-    },
-    {
-      "id": "ad64",
-      "content": "qzdzq",
-      "senderId": "1fcc",
-      "recipientId": "6a02",
-      "senderUsername": "amin",
-      "timestamp": 1734308731119
+      "id": "62f8",
+      "content": "fzefzef",
+      "senderId": "5421",
+      "recipientId": "79a4",
+      "senderUsername": "Salah",
+      "timestamp": 1734471896420
     }
   ]
 }

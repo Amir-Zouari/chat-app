@@ -4,6 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { ChatService } from '../../services/chat.service';
 import { User } from '../../model/User';
+import { interval, switchMap } from 'rxjs';
 
 
 @Component({
@@ -20,12 +21,21 @@ export class RecipientStatusComponent {
 
   ngOnInit(){
     this.getRecipient();
+
+
+    interval(1000) 
+      .pipe(switchMap(() => this.chatService.selectedRecipientx$))
+      .subscribe({
+        next: () => this.getRecipient()
+        
+  })
   }
 
   getRecipient(){
-    this.chatService.selectedRecipient$.subscribe({
-      next: (id) => {
-        this.chatService.getSelectedRecipient(id).subscribe({
+    this.chatService.selectedRecipientx$.subscribe({
+      next: (recipient) => {
+        if(recipient.id)
+        this.chatService.getSelectedRecipient(recipient.id).subscribe({
           next:(user) => this.recipienttUser = user
         })
       }

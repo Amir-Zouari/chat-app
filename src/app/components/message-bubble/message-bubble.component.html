@@ -9,15 +9,15 @@
         </div>
     </div>
 </div> -->
-<div class="flex flex-col gap-1" [ngClass]="{'float-end':isOwnMessage,'float-start':!isOwnMessage}">
+<div class="flex flex-col gap-1" >
 
    
         <div >
-            <span  [ngClass]="{'float-end':isOwnMessage,'float-start':!isOwnMessage}" class="text-white-200 text-xs ">{{ formatTimestamp(message.timestamp) }}</span>
+            <span [ngClass]="{'float-end':isOwnMessage,'float-start':!isOwnMessage}"  class="text-white-200 text-xs ">{{ formatTimestamp(message.timestamp) }}</span>
          
         </div>
         
-        <div [ngClass]="{'bg-purple-100':isOwnMessage,'bg-purple-200':!isOwnMessage}" class="rounded-xl bg-purple-100 text-white-100 lg:max-w-[350px] px-2 py-3">
+        <div [ngClass]="{'bg-purple-100':isOwnMessage,'bg-purple-300':!isOwnMessage}" class="rounded-xl bg-purple-100 text-white-100 lg:max-w-[350px] p-2">
             {{ message.content }}
         </div>
     

@@ -35,3 +35,10 @@
     border-top: 1px solid rgba(0, 0, 0, 0.12);
     background-color: #fff;
 }
+
+.side-bar{
+    height: calc(100vh - 5.5rem);
+  }
+.chat-window{
+    height: calc(100vh - 5.5rem);
+}
