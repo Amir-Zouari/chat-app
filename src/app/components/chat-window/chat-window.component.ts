@@ -47,8 +47,6 @@ export class ChatWindowComponent implements OnInit {
     
     interval(1000).subscribe(() => {
      
-
-     
       if (this.chatBox && this.chatBox.nativeElement) {
         this.chatBox.nativeElement.scrollTop = this.chatBox.nativeElement.scrollHeight;
       }
