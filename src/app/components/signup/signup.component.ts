@@ -31,6 +31,8 @@ import { AuthService } from '../../services/auth.service';
 export class SignupComponent implements OnInit {
   signupForm: FormGroup;
   isSubmitted: boolean = false;
+  errorMessage: string | null = null;
+
  
 
   constructor(
@@ -61,6 +63,7 @@ export class SignupComponent implements OnInit {
         // Navigate to chat after successful registration
         this.router.navigate(['/chat']);
       } catch (error) {
+        this.errorMessage = (`${error}`.substring(7) || 'An unexpected error occurred');
         console.error('Registration failed:', error);
       }
     }

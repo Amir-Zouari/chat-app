@@ -24,7 +24,8 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   isSubmitted: boolean = false;
-  isCredentialsAreInvalid: boolean = false;
+  errorMessage: string | null = null;
+
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -47,7 +48,7 @@ export class LoginComponent implements OnInit {
         await this.authService.login(username, password);
         this.router.navigate(['/chat']);
       } catch (error) {
-        this.isCredentialsAreInvalid = true;
+        this.errorMessage = (`${error}`.substring(7) || 'An unexpected error occurred');
         console.error('Login failed:', error);
       }
     }

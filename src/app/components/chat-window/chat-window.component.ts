@@ -115,7 +115,4 @@ export class ChatWindowComponent implements OnInit {
   //   this.chatService.setSelectedRecipient(this.selectedRecipientId);  // Use undefined consistently
   // }
 
-  isPrivateMessage(message: any): boolean {
-    return message.recipientId !== undefined;
-  }
 }

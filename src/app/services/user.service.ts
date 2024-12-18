@@ -19,7 +19,7 @@ export class UserService {
 
   constructor(private http: HttpClient) {
     interval(1000).subscribe(() => {
-      this.updateOnlineStatus();
+      this.getRegisteredUsers();
     });
   }
 
@@ -67,7 +67,7 @@ export class UserService {
     }
   }
 
-  private updateOnlineStatus() {
+  private getRegisteredUsers() {
     this.getAllUsers().subscribe((users) => {
       this.userListSubject.next(users);
       //console.log('registered users:', users);

@@ -14,7 +14,6 @@ import { DateUtils } from '../../utils/DateUtils';
 export class MessageBubbleComponent {
   @Input() message!: Message;
   @Input() isOwnMessage: boolean = false;
-  @Input() isPrivate: boolean = false;
 
   formatTimestamp(timestamp: number): string {
     return DateUtils.formatTimestampToHHMM(timestamp);
