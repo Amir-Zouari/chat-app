@@ -7,12 +7,12 @@
       "password": "amin123",
       "isOnline": true,
       "lastMessage": {
-        "id": "62f8",
-        "content": "fzefzef",
-        "senderId": "5421",
+        "id": "42cb",
+        "content": "Hello",
+        "senderId": "88bd",
         "recipientId": "79a4",
-        "senderUsername": "Salah",
-        "timestamp": 1734471896420
+        "senderUsername": "amir",
+        "timestamp": 1734477415620
       }
     },
     {
@@ -43,6 +43,21 @@
         "recipientId": "79a4",
         "senderUsername": "Salah",
         "timestamp": 1734471896420
+      }
+    },
+    {
+      "id": "88bd",
+      "username": "amir",
+      "email": "amir@example.com",
+      "password": "amir123",
+      "isOnline": true,
+      "lastMessage": {
+        "id": "42cb",
+        "content": "Hello",
+        "senderId": "88bd",
+        "recipientId": "79a4",
+        "senderUsername": "amir",
+        "timestamp": 1734477415620
       }
     }
   ],
@@ -78,6 +93,14 @@
       "recipientId": "79a4",
       "senderUsername": "Salah",
       "timestamp": 1734471896420
+    },
+    {
+      "id": "42cb",
+      "content": "Hello",
+      "senderId": "88bd",
+      "recipientId": "79a4",
+      "senderUsername": "amir",
+      "timestamp": 1734477415620
     }
   ]
 }

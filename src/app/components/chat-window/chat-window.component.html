@@ -18,8 +18,7 @@
           *ngFor="let message of messages$ | async"
           [ngClass]="{'self-start':!isOwnMessage(message.senderId),'self-end':isOwnMessage(message.senderId)}"
           [message]="message"
-          [isOwnMessage]="isOwnMessage(message.senderId)"
-          [isPrivate]="isPrivateMessage(message)">
+          [isOwnMessage]="isOwnMessage(message.senderId)">
         </app-message-bubble>
     </div>
     
