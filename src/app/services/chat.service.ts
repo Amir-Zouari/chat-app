@@ -36,7 +36,7 @@ export class ChatService {
     private http: HttpClient,
     private authService: AuthService
   ) {
-    // Poll for new messages every 2 seconds
+    // Poll for new messages every 1second
     interval(1000).pipe(
       switchMap(() => this.getMessages())
 
@@ -131,18 +131,51 @@ export class ChatService {
         this.http.put<User>(`http://localhost:3000/users/${user.id}`,user).subscribe();
       } 
     });
+  }
+
+    setLastMessageFromCache(message: string){
+      localStorage.setItem('lastMessage',message);
+    }
+    getLastMessageFromCache(message: string){
+
+    }
+    getLastMessage(recipient:User): Observable<Message> {
+
+      
+      const currentUser = this.authService.getCurrentUser();
+      return this.http.get<Message[]>(this.apiUrl).pipe(
+        map(messages => {
+          console.log('Fetched messages:', messages);
+         
+  
+          
+          
+            const filteredMessages = messages.filter(message => 
+              (message.senderId === currentUser?.id && message.recipientId === recipient.id) ||
+              (message.senderId === recipient.id && message.recipientId === currentUser?.id)
+            );
+  
+            // Sort messages by timestamp
+            const sortedMessages = filteredMessages.sort((a, b) => a.timestamp - b.timestamp);
+  
+            // Return the last message if any, or null if there are no messages
+            return sortedMessages.length > 0 ? sortedMessages[sortedMessages.length - 1] : new Message();
+          
+        })
+      );
+    }
     // this.http.put<User>(`http://localhost:3000/users/${recipient.id}`,recipient).subscribe({
     //   next: () => console.log("done")
     // });
     // this.http.put<User>(`http://localhost:3000/users/${sender.id}`,sender).subscribe();
-  }
+
 
   // setSelectedRecipient(recipientId: number|null) {
   //   this.selectedRecipientSubject.next(recipientId);
   // }
 
   setSelectedRecipientx(recipient:User){
-    this.setSelectedRecipientInCache(recipient);
+  
     this.selectedRecipientSubjectx.next(recipient);
   }
   getSelectedRecipient(id:number): Observable<User>{
@@ -151,22 +184,6 @@ export class ChatService {
     
   }
 
-  setSelectedRecipientInCache(user: User){
-    if(this.getSelectedRecipientFromCache() != null)
-    localStorage.setItem('selectedRecipient', JSON.stringify(user));
-  }
-  getSelectedRecipientFromCache(): User | null{
-   
-    let xy;
-    try{
-      xy = JSON.parse(localStorage.getItem('selectedRecipient') as string);
-      return new User(xy);
-    } 
-    catch(err){
-      return null;
-    }
-
-  }
 
  
 }
