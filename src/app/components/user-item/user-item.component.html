@@ -1,0 +1,19 @@
+<div [ngClass]="{'bg-purple-300': isSelected}" class="rounded-xl flex gap-3 items-center hover:bg-purple-200 cursor-pointer py-4 px-3 my-1">
+    <div class="flex items-center justify-center">
+        <mat-icon class="scale-[2] ml-3 text-white-200">account_circle</mat-icon>
+        <div [ngClass]="{'bg-[#16a54d]': user.isOnline}" class="rounded-full size-2  self-end z-10 -mb-2 -ml-[2px]"></div>
+    </div>
+    
+
+
+<div class="w-full">
+
+    
+    <div class="flex items-center justify-between">
+        <span class="text-white-100">{{user.username}}</span>
+        <span class="text-xs text-white-200">{{ formatTimestamp(lastMessage.timestamp)}}</span>
+        <!-- <div class="rounded-full size-2 bg-[#008000]"></div> -->
+    </div>
+    <!-- <p class="text-xs text-white-200 line-clamp-1 ease-in-out duration-500">{{lastMessage.content}}</p> -->
+</div>
+</div>

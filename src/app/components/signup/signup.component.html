@@ -1,31 +1,48 @@
-<div class="signup-container mat-elevation-z8">
-    <h2>Sign Up</h2>
-    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-        <mat-form-field appearance="outline">
-            <mat-label>Username</mat-label>
-            <input matInput formControlName="username" placeholder="Enter username">
-            <mat-error *ngIf="signupForm.get('username')?.hasError('required')">
-                Username is required
-            </mat-error>
-        </mat-form-field>
 
-        <mat-form-field appearance="outline">
-            <mat-label>Password</mat-label>
-            <input matInput type="password" formControlName="password" placeholder="Enter password">
-            <mat-error *ngIf="signupForm.get('password')?.hasError('required')">
-                Password is required
-            </mat-error>
-            <mat-error *ngIf="signupForm.get('password')?.hasError('minlength')">
-                Password must be at least 6 characters long
-            </mat-error>
-        </mat-form-field>
+<div class="min-h-svh flex flex-col justify-center items-center text-white-100">
 
-        <button mat-raised-button color="primary" type="submit" [disabled]="!signupForm.valid">
-            Sign Up
-        </button>
+    <div class="bg-purple-400 rounded-2xl px-6 py-4 text-xl">
+        <h2 class="text-white-100 text-4xl text-center mt-4">Sign Up</h2>
+        <h4 class="text-base text-center text-red-100 mt-4" *ngIf="errorMessage">{{errorMessage}}</h4>
 
-        <p class="login-link">
-            Already have an account? <a routerLink="/login">Login here</a>
-        </p>
-    </form>
+        <form class="flex flex-col items-center" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+          
+            
+                <div class="flex flex-col gap-0 h-8 mt-4 mb-2">
+    
+                    
+                    <input #username class="px-1 bg-transparent border-none outline-none text-white-100 " formControlName="username" placeholder="Username">
+                    <span [ngClass]="{'bg-white-200':username.value.length==0}" class="mt-[1px] h-[2px] rounded bg-purple-100 w-full ease-in-out duration-400" ></span>
+    
+                    <span class="px-1 text-xs text-red-100 "  *ngIf="isSubmitted && signupForm.get('username')?.hasError('required')">
+                        Username is required
+                    </span>
+                </div>
+    
+          
+                <div class="flex flex-col gap-0 h-8">
+                    <input #password class="px-1 bg-transparent border-none outline-none text-white-100 " type="password" formControlName="password" placeholder="Password">
+                    <span [ngClass]="{'bg-white-200':password.value.length==0}" class="mt-[1px] h-[2px] rounded bg-purple-100 w-full ease-in-out duration-400" ></span>
+    
+                    <span class="px-1 -mt-1 text-xs text-red-100 " *ngIf="isSubmitted && signupForm.get('password')?.hasError('required')">
+                        Password is required
+                    </span>
+                    <span class="px-1 -mt-1 text-xs text-red-100" *ngIf="isSubmitted && signupForm.get('password')?.hasError('minlength')">
+                        Password must be at least 6 characters long
+                    </span>
+                </div>
+              
+          
+    
+            <button class="mt-6 bg-transparent  border-[#a9a9a9] border-2 rounded-xl px-3 py-2 text-[#a9a9a9] w-[150px] "  type="submit">
+                Sign Up
+            </button>
+            <!-- [disabled]="!signupForm.valid -->
+            <p class="my-4">
+                Already have an account? <a routerLink="/login" class="text-purple-100 cursor-pointer">Login here</a>
+            </p>
+        </form>
+    </div>
+
 </div>
+

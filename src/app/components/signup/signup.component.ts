@@ -31,6 +31,12 @@ import { AuthService } from '../../services/auth.service';
 export class SignupComponent implements OnInit {
   signupForm: FormGroup;
 
+  isSubmitted: boolean = false;
+  errorMessage: string | null = null;
+
+ 
+
+
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -45,8 +51,12 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {}
 
   async onSubmit() {
+
+    this.isSubmitted = true;
     if (this.signupForm.valid) {
       try {
+        this.isSubmitted = false;
+
         const { username, password } = this.signupForm.value;
         // Using username as email for demo purposes
         await this.authService.register(
@@ -57,6 +67,9 @@ export class SignupComponent implements OnInit {
         // Navigate to chat after successful registration
         this.router.navigate(['/chat']);
       } catch (error) {
+
+        this.errorMessage = (`${error}`.substring(7) || 'An unexpected error occurred');
+
         console.error('Registration failed:', error);
       }
     }

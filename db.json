@@ -1,110 +1,105 @@
 {
   "users": [
     {
-      "id": "60e4",
-      "username": "amir",
-      "email": "amir@example.com",
-      "password": "amir123",
-      "isOnline": true
-    },
-    {
-      "id": "1fcc",
-      "username": "amin",
-      "email": "amin@example.com",
+      "id": "79a4",
+      "username": "Amin",
+      "email": "Amin@example.com",
       "password": "amin123",
-      "isOnline": true
+      "isOnline": false,
+      "lastMessage": {
+        "id": "bb66",
+        "content": "xyz",
+        "senderId": "79a4",
+        "recipientId": "0597",
+        "senderUsername": "Amin",
+        "timestamp": 1734566862536
+      }
     },
     {
-      "id": "b5d9",
-      "username": "Mohamed",
-      "email": "Mohamed@example.com",
-      "password": "med123"
+      "id": "0597",
+      "username": "Amir",
+      "email": "Amir@example.com",
+      "password": "amir123",
+      "isOnline": true,
+      "lastMessage": {
+        "id": "bb66",
+        "content": "xyz",
+        "senderId": "79a4",
+        "recipientId": "0597",
+        "senderUsername": "Amin",
+        "timestamp": 1734566862536
+      }
     },
     {
-      "id": "6a02",
-      "username": "Ala",
-      "email": "Ala@example.com",
-      "password": "ala123"
-    },
-    {
-      "id": "134f",
-      "username": "tyson",
-      "email": "tyson@example.com",
-      "password": "tyson123"
-    },
-    {
-      "id": "732f",
-      "username": "kly",
-      "email": "kly@example.com",
-      "password": "kly123",
+      "id": "5421",
+      "username": "Salah",
+      "email": "Salah@example.com",
+      "password": "salah123",
       "isOnline": false
     },
     {
-      "id": "5675",
-      "username": "tim",
-      "email": "tim@example.com",
-      "password": "tim123",
+      "id": "c5a9",
+      "username": "aze",
+      "email": "aze@example.com",
+      "password": "aze123",
       "isOnline": false
     },
     {
-      "id": "43d5",
-      "username": "steve",
-      "email": "steve@example.com",
-      "password": "steve123",
-      "isOnline": false
-    },
-    {
-      "id": "bdc0",
-      "username": "guest",
-      "email": "guest@example.com",
-      "password": "guest123",
-      "isOnline": false
-    },
-    {
-      "id": "dde4",
-      "username": "jobs",
-      "email": "jobs@example.com",
-      "password": "jobs123"
-    },
-    {
-      "id": "89d5",
-      "username": "guest2",
-      "email": "guest2@example.com",
-      "password": "guest123",
-      "isOnline": false
-    },
-    {
-      "id": "b1e8",
-      "username": "guest3",
-      "email": "guest3@example.com",
-      "password": "guest3",
-      "isOnline": false
+      "id": "87c8",
+      "username": "bachir",
+      "email": "bachir@example.com",
+      "password": "bachir123",
+      "isOnline": false,
+      "lastMessage": {
+        "id": "2a5a",
+        "content": "hhh",
+        "senderId": "0597",
+        "recipientId": "87c8",
+        "senderUsername": "Amir",
+        "timestamp": 1734507963568
+      }
     }
   ],
   "messages": [
     {
-      "id": "9eec",
-      "content": "hello",
-      "senderId": "60e4",
-      "recipientId": "1fcc",
-      "senderUsername": "amir",
-      "timestamp": 1734364274462
+      "id": "3c0f",
+      "content": "Hello how are you doing !",
+      "senderId": "79a4",
+      "recipientId": "0597",
+      "senderUsername": "Amin",
+      "timestamp": 1734507043525
     },
     {
-      "id": "7aa6",
-      "content": "hey how are you",
-      "senderId": "1fcc",
-      "recipientId": "60e4",
-      "senderUsername": "amin",
-      "timestamp": 1734364296392
+      "id": "f632",
+      "content": "Fine",
+      "senderId": "0597",
+      "recipientId": "79a4",
+      "senderUsername": "Amir",
+      "timestamp": 1734507056712
     },
     {
-      "id": "97cc",
-      "content": "im good thanks",
-      "senderId": "60e4",
-      "recipientId": "1fcc",
-      "senderUsername": "amir",
-      "timestamp": 1734364308430
+      "id": "5e69",
+      "content": "Hello",
+      "senderId": "0597",
+      "recipientId": "87c8",
+      "senderUsername": "Amir",
+      "timestamp": 1734507936154
+    },
+    {
+      "id": "2400",
+      "content": "Hi",
+      "senderId": "87c8",
+      "recipientId": "0597",
+      "senderUsername": "bachir",
+      "timestamp": 1734507940663
+    },
+    {
+      "id": "2a5a",
+      "content": "hhh",
+      "senderId": "0597",
+      "recipientId": "87c8",
+      "senderUsername": "Amir",
+      "timestamp": 1734507963568
     }
   ]
 }

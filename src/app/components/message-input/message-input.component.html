@@ -1,4 +1,6 @@
-<div class="message-input-wrapper">
+
+<!-- <div class="message-input-wrapper">
+
     <mat-form-field appearance="outline" class="message-input">
         <mat-label>Type a message</mat-label>
         <input matInput
@@ -11,4 +13,21 @@
             <mat-icon>send</mat-icon>
         </button>
     </mat-form-field>
+
+</div> -->
+
+<div class="flex rounded-xl bg-purple-300 p-3 w-full">
+ 
+    <input 
+        [(ngModel)]="messageText"
+        (keyup.enter)="onSendMessage()"
+        class="grow bg-transparent border-none outline-none text-white-100" type="text" placeholder="Type a message...">
+    <!-- <button class="bg-purple-100 outline-none border-none rounded-xl px-3 py-2 text-white-100 inline-flex gap-1 items-center" >Send  <mat-icon class="text-xl mb-[1px]" fontIcon="send"></mat-icon></button> -->
+
+    <button 
+        (click)="onSendMessage()"
+        [disabled]="!messageText.trim()"
+        class="flex-none bg-transparent outline-none border-[#a9a9a9] border-2 rounded-xl px-3 py-2 text-[#a9a9a9] inline-flex gap-1 items-center" >Send  <mat-icon class="text-xl mb-[1px]" fontIcon="send"></mat-icon></button>
 </div>
+
+

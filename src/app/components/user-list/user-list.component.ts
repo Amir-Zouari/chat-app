@@ -4,21 +4,29 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../services/user.service';
-import { User } from '../../services/auth.service';
+
+
+import { UserItemComponent } from "../user-item/user-item.component";
+import { User } from '../../model/User';
+
 
 @Component({
   selector: 'app-user-list',
   standalone: true,
-  imports: [CommonModule, MatListModule, MatIconModule],
+
+  imports: [CommonModule, MatListModule, MatIconModule, UserItemComponent],
+
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.css'],
 })
 export class UserListComponent implements OnInit {
   @Input() selectedUserId?: number | null;
-  @Output() userSelected = new EventEmitter<number>();
+
+  @Output() userSelected = new EventEmitter<User>();
 
 
-  users$ = this.userService.Users$;
+  users$ = this.userService.users$;
+
   //currentUser$ = this.userService.currentUser$;
   currentUser: any;
 
@@ -30,7 +38,8 @@ export class UserListComponent implements OnInit {
     this.currentUser = this.authService.getCurrentUser();
   }
 
-  onUserClick(userId: number) {
-    this.userSelected.emit(userId);
+
+  onUserClick(user: User) {
+    this.userSelected.emit(user);
   }
 }

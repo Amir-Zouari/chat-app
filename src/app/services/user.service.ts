@@ -1,28 +1,36 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, interval, map } from 'rxjs';
-import { User } from './auth.service';
 
-interface OnlineUser extends User {
-  lastActive?: number;
-}
+import { User } from '../model/User';
+import { ChatService } from './chat.service';
+
+
+// interface OnlineUser extends User {
+//   lastActive?: number;
+// }
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
   private apiUrl = 'http://localhost:3000';
-  private UsersSubject = new BehaviorSubject<OnlineUser[]>([]);
-  Users$ = this.UsersSubject.asObservable();
+
+  private userListSubject = new BehaviorSubject<User[]>([]);
+  users$ = this.userListSubject.asObservable();
 
   constructor(private http: HttpClient) {
     interval(1000).subscribe(() => {
-      this.updateOnlineStatus();
+      this.getRegisteredUsers();
+
     });
   }
 
   setStatusAsOffline(username: string) {
-    const currentUsers = this.UsersSubject.value;
+
+    const currentUsers = this.userListSubject.value;
+
     const updatedUsers = currentUsers.map((user) => {
       if (user.username === username) {
         return { ...user, isOnline: false };
@@ -30,7 +38,9 @@ export class UserService {
       return user;
     });
 
-    this.UsersSubject.next(updatedUsers);
+
+    this.userListSubject.next(updatedUsers);
+
 
     // Find the user to update on the server
     const userToUpdate = updatedUsers.find(
@@ -44,7 +54,9 @@ export class UserService {
   }
 
   setStatusAsOnline(username: string) {
-    const currentUsers = this.UsersSubject.value;
+
+    const currentUsers = this.userListSubject.value;
+
     const updatedUsers = currentUsers.map((user) => {
       if (user.username === username) {
         return { ...user, isOnline: true };
@@ -52,7 +64,9 @@ export class UserService {
       return user;
     });
 
-    this.UsersSubject.next(updatedUsers);
+
+    this.userListSubject.next(updatedUsers);
+
 
     // Find the user to update on the server
     const userToUpdate = updatedUsers.find(
@@ -65,9 +79,11 @@ export class UserService {
     }
   }
 
-  private updateOnlineStatus() {
-    this.http.get<User[]>(`${this.apiUrl}/users`).subscribe((users) => {
-      this.UsersSubject.next(users);
+
+  private getRegisteredUsers() {
+    this.getAllUsers().subscribe((users) => {
+      this.userListSubject.next(users);
+
       //console.log('registered users:', users);
     });
   }
@@ -75,4 +91,12 @@ export class UserService {
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${this.apiUrl}/users`);
   }
+
+
+  getFirstUserFromTheList(){
+    console.log(this.userListSubject.value[0])
+    return this.userListSubject.value[0];
+  }
+  
+
 }

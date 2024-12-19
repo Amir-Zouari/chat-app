@@ -1,6 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Message } from '../../services/chat.service';
+
+import { Message } from '../../model/Message';
+import { DateUtils } from '../../utils/DateUtils';
+
+
 
 @Component({
   selector: 'app-message-bubble',
@@ -12,9 +16,10 @@ import { Message } from '../../services/chat.service';
 export class MessageBubbleComponent {
   @Input() message!: Message;
   @Input() isOwnMessage: boolean = false;
-  @Input() isPrivate: boolean = false;
+
 
   formatTimestamp(timestamp: number): string {
-    return new Date(timestamp).toLocaleTimeString();
+    return DateUtils.formatTimestampToHHMM(timestamp);
+
   }
 }

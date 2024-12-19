@@ -24,6 +24,10 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
+  isSubmitted: boolean = false;
+  errorMessage: string | null = null;
+
+
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -38,12 +42,19 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   async onSubmit() {
+
+    this.isSubmitted = true;
     if (this.loginForm.valid) {
+      this.isSubmitted = false;
+
       try {
         const { username, password } = this.loginForm.value;
         await this.authService.login(username, password);
         this.router.navigate(['/chat']);
       } catch (error) {
+
+        this.errorMessage = (`${error}`.substring(7) || 'An unexpected error occurred');
+
         console.error('Login failed:', error);
       }
     }

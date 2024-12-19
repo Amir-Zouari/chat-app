@@ -2,16 +2,20 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, interval } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
-import { AuthService } from './auth.service';
 
-export interface Message {
-  id?: string;
-  content: string;
-  senderId: number;
-  recipientId?: number | null;  // Optional: if not set, message is public
-  senderUsername: string;
-  timestamp: number;  // Unix timestamp in milliseconds
-}
+import { AuthService} from './auth.service';
+import { User } from '../model/User';
+import { Message } from '../model/Message';
+
+// export interface Message {
+//   id?: string;
+//   content: string;
+//   senderId: number;
+//   recipientId?: number | null;  // Optional: if not set, message is public
+//   senderUsername: string;
+//   timestamp: number;  // Unix timestamp in milliseconds
+// }
+
 
 @Injectable({
   providedIn: 'root'
@@ -21,30 +25,45 @@ export class ChatService {
   private messagesSubject = new BehaviorSubject<Message[]>([]);
   messages$ = this.messagesSubject.asObservable();
 
-  private selectedRecipientSubject = new BehaviorSubject<number | null>(null);
-  selectedRecipient$ = this.selectedRecipientSubject.asObservable();
+
+  // private selectedRecipientSubject = new BehaviorSubject<number | null>(null);
+  // selectedRecipient$ = this.selectedRecipientSubject.asObservable();
+  
+  private selectedRecipientSubjectx = new BehaviorSubject<User>(new User());
+  selectedRecipientx$ = this.selectedRecipientSubjectx.asObservable();
+
+  private isSelectedRecipientOnline = new BehaviorSubject<boolean>(false);
+  isSelectedRecipientOnline$ = this.isSelectedRecipientOnline.asObservable();
+
 
   constructor(
     private http: HttpClient,
     private authService: AuthService
   ) {
-    // Poll for new messages every 2 seconds
+
+    // Poll for new messages every 1second
     interval(1000).pipe(
       switchMap(() => this.getMessages())
+
     ).subscribe(messages => {
       // Merge new messages with existing ones, avoiding duplicates
-      /* const existingMessages = this.messagesSubject.value;
+      const existingMessages = this.messagesSubject.value;
+
       const allMessages = [...existingMessages];
       
       messages.forEach(newMsg => {
         if (!existingMessages.some(existingMsg => existingMsg.id === newMsg.id)) {
           allMessages.push(newMsg);
         }
-      }); */
+
+      });
       
-      //this.messagesSubject.next(allMessages);
+      // this.messagesSubject.next(allMessages); skip this to fix chat messages
       this.messagesSubject.next(messages);
     });
+
+    
+
   }
 
   getMessages(): Observable<Message[]> {
@@ -52,12 +71,14 @@ export class ChatService {
     return this.http.get<Message[]>(this.apiUrl).pipe(
       map(messages => {
         console.log('Fetched messages:', messages);
-        const selectedRecipient = this.selectedRecipientSubject.value;
+        const selectedRecipient = this.selectedRecipientSubjectx.value;
         return messages.filter(message => {
           if (selectedRecipient) {
+            console.log(selectedRecipient)
             // Show only private messages between current user and selected recipient
-            return (message.senderId === currentUser?.id && message.recipientId === selectedRecipient) ||
-                   (message.senderId === selectedRecipient && message.recipientId === currentUser?.id);
+            return (message.senderId === currentUser?.id && message.recipientId === selectedRecipient.id) ||
+                   (message.senderId === selectedRecipient.id && message.recipientId === currentUser?.id);
+
           } else {
             //show nothing
             return false; 
@@ -68,7 +89,9 @@ export class ChatService {
     );
   }
 
-  sendMessage(content: string, recipientId?: number | null): Observable<Message> {
+ 
+  sendMessage(content: string, recipientId: number): Observable<Message> {
+
     const currentUser = this.authService.getCurrentUser();
     if (!currentUser) {
       throw new Error('User not authenticated');
@@ -91,12 +114,88 @@ export class ChatService {
         if (!currentMessages.some(msg => msg.id === newMessage.id)) {
           this.messagesSubject.next([...currentMessages, newMessage]);
         }
+
+        this.addLastMessage(newMessage,this.selectedRecipientSubjectx.value,this.authService.getCurrentUser() as User)
         return newMessage;
-      })
+      }),
+     
     );
   }
 
-  setSelectedRecipient(recipientId: number | null) {
-    this.selectedRecipientSubject.next(recipientId);
+  addLastMessage(message: Message,recipient: User, sender: User){
+    // recipient.lastMessage = message;
+    // sender.lastMessage = message;
+   
+    this.http.get<User[]>(`http://localhost:3000/users?id=${recipient.id}`).subscribe({
+      next: (rec) => {
+        let user: User = new User(rec[0]);
+        user.lastMessage = message;
+        this.http.put<User>(`http://localhost:3000/users/${user.id}`,user).subscribe();
+      } 
+    });
+
+    
+    this.http.get<User[]>(`http://localhost:3000/users?id=${sender.id}`).subscribe({
+      next: (sender) => {
+        let user: User = new User(sender[0]);
+        user.lastMessage = message;
+        this.http.put<User>(`http://localhost:3000/users/${user.id}`,user).subscribe();
+      } 
+    });
   }
+
+    setLastMessageFromCache(message: string){
+      localStorage.setItem('lastMessage',message);
+    }
+    getLastMessageFromCache(message: string){
+
+    }
+    getLastMessage(recipient:User): Observable<Message> {
+
+      
+      const currentUser = this.authService.getCurrentUser();
+      return this.http.get<Message[]>(this.apiUrl).pipe(
+        map(messages => {
+          console.log('Fetched messages:', messages);
+         
+  
+          
+          
+            const filteredMessages = messages.filter(message => 
+              (message.senderId === currentUser?.id && message.recipientId === recipient.id) ||
+              (message.senderId === recipient.id && message.recipientId === currentUser?.id)
+            );
+  
+            // Sort messages by timestamp
+            const sortedMessages = filteredMessages.sort((a, b) => a.timestamp - b.timestamp);
+  
+            // Return the last message if any, or null if there are no messages
+            return sortedMessages.length > 0 ? sortedMessages[sortedMessages.length - 1] : new Message();
+          
+        })
+      );
+    }
+    // this.http.put<User>(`http://localhost:3000/users/${recipient.id}`,recipient).subscribe({
+    //   next: () => console.log("done")
+    // });
+    // this.http.put<User>(`http://localhost:3000/users/${sender.id}`,sender).subscribe();
+
+
+  // setSelectedRecipient(recipientId: number|null) {
+  //   this.selectedRecipientSubject.next(recipientId);
+  // }
+
+  setSelectedRecipientx(recipient:User){
+  
+    this.selectedRecipientSubjectx.next(recipient);
+  }
+  getSelectedRecipient(id:number): Observable<User>{
+  
+    return this.http.get<User>('http://localhost:3000/users/'+id);
+    
+  }
+
+
+ 
+
 }

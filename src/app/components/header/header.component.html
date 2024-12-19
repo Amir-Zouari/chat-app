@@ -1,4 +1,6 @@
-<mat-toolbar color="primary" class="header-toolbar">
+
+<!-- <mat-toolbar color="primary" class="header-toolbar bg-purple-400">
+
     <span>Chat App</span>
     <span class="toolbar-spacer"></span>
     
@@ -19,4 +21,17 @@
         <button mat-button routerLink="/login">Login</button>
         <button mat-button routerLink="/signup">Sign Up</button>
     </ng-template>
-</mat-toolbar>
+
+</mat-toolbar> -->
+
+<div class="flex flex-row justify-between items-center px-24 ">
+    <h1 class="text-3xl">Chats</h1>
+    <div class="flex gap-4 items-center ">
+        <h1 class="text-white-200 text-xl">{{ currentUser?.username }}</h1>
+        <a (click)="logout()" routerLink="/login" class="text-purple-100 cursor-pointer flex items-center "><mat-icon class="mt-1">exit_to_app</mat-icon></a>
+    
+        
+    </div>
+    
+    </div>
+    

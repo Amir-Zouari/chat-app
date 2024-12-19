@@ -1,13 +1,33 @@
-<div class="user-list-container">
-    <mat-list>
-        <h3 mat-subheader>Users</h3>
-        <mat-list-item 
+
+
+        <div
             *ngFor="let user of users$ | async" 
-            class="user-item"
-            [class.selected]="user.id === selectedUserId"
-            (click)="user.id && onUserClick(user.id)">
-            <mat-icon matListItemIcon class="online-icon" aria-label="User is online" [ngStyle]="{color: user.isOnline == true ? 'green' : 'gray'}">fiber_manual_record</mat-icon>
-            <div matListItemTitle>{{ user.username }}<span *ngIf="user.id === currentUser?.id" [ngStyle]="{'font-weight': 'bold'}"> (You)</span></div>
-        </mat-list-item>
-    </mat-list>
-</div>
+            class="grid space-y-4 px-8  bg-purple-500 rounded-xl"
+            (click)="user.id && onUserClick(user)">
+            <!-- <mat-icon matListItemIcon class="online-icon" aria-label="User is online" [ngStyle]="{color: user.isOnline == true ? 'green' : 'gray'}">fiber_manual_record</mat-icon>
+            <div matListItemTitle>{{ user.username }}<span *ngIf="user.id === currentUser?.id" [ngStyle]="{'font-weight': 'bold'}"> (You)</span></div> -->
+
+            <app-user-item *ngIf="currentUser.id != user.id" [user]="user" [isSelected]="user.id === selectedUserId"/>
+            <!-- <div [ngClass]="{'bg-purple-200': user.id === selectedUserId}" class="rounded-xl flex gap-3 items-center hover:bg-[#57458a] cursor-pointer p-3">
+                <div class="flex items-center justify-center">
+                    <mat-icon class="scale-[2] ml-3 text-white-200">account_circle</mat-icon>
+                    <div [ngClass]="{'bg-[#16a54d]': user.isOnline == true}" class="rounded-full size-2  self-end z-10 -mb-2 -ml-[2px]"></div>
+                </div>
+                
+            
+            
+            <div class="w-full">
+            
+                
+                <div class="flex items-center justify-between">
+                    <span class="text-white-100">{{ user.username }}</span>
+                    <span class="text-xs text-white-200">15:25</span>
+                </div>
+                <p class="text-xs text-white-200 line-clamp-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, deleniti?</p>
+            </div>
+            </div>
+         -->
+        </div>
+
+   
+
